@@ -1,6 +1,9 @@
 # Time Series Anomaly Detection
 This is a repository dedicated to sharing easy to use anomaly detection methods for time series data.
-*Note that Tensorflow (required to run the LSTM based method) only works with Python 3.9–3.12.*
+
+Warnings:
+- Tensorflow (required to run the LSTM based method) only works with Python 3.9–3.12.
+- Many time series models assume the data is stationary. In this repository we skipped these standard checks in favor of simplicity and focusing on the anomaly detection methods.
 ## Abstract
 Anomaly detection for time series data has a variety of applications ranging from fraud alerting to identifying health concerns. We cover a high level introduction to time series data, univariate time series models, and time series anomaly detection. We provide examples with code for some methods of using time series models for anomaly detection in a variety of situations. 
 ## Contents
@@ -37,7 +40,7 @@ In this image, the prediction interval is indicated by the grey area around the 
 Autoencoders are another method for anomaly detection. We build two models: an encoder and a decoder where the encoder transforms data into a simpler representation, then the decoder reconstructs that representation as closely as possible to the original data. We can calculate the error between the original and reconstructed data, and when error is higher than a predetermined threshold this indicates an anomaly.
 ![autoencoder diagram](images/autoencoder.png)
 ## Time series models and python libraries used in this repository
-Many models assume the data is stationary. In this repository we have ignored these standard checks.
+
 ### ARIMA
 https://pypi.org/project/pmdarima/
 ### Exponential smoothing
