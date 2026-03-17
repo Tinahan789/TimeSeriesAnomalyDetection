@@ -23,13 +23,19 @@ Anomaly is sometimes used interchangably with outliers, and frequently the same 
 
 In this image it is easy to visually inspect the plot and find an obvious anomaly in February 2026. Not all anomalies are this easy to spot.
 ![anomaly example](images/anomaly.png)
+
+Anomaly detection at its core is a simple concept. It's the "math and stuff" part where we have the opportunity to make things complicated and fun.
+![anomaly detection](images/anomaly_detection.png)
 ### Prediction intervals
-Many of the techniques included in this repository rely on the use of prediction intervals. The prediction interval is a range of values that is likely to contian an individual value.
+Many of the techniques included in this repository rely on the use of prediction intervals. The prediction interval is a range of values that is likely to contian an individual value. We can determine whether or not a data point is an anomaly based on if it falls outside of the prediction interval.
 
 Note that in some places we use the term confidence interval, which is a similar concept, but technically incorrect and I'm too lazy to go change it.
 
 In this image, the prediction interval is indicated by the grey area around the predicted values and true values.
 ![prediction interval example](images/prediction_interval.png)
+### Autoencoders
+Autoencoders are another method for anomaly detection. We build two models: an encoder and a decoder where the encoder transforms data into a simpler representation, then the decoder reconstructs that representation as closely as possible to the original data. We can calculate the error between the original and reconstructed data, and when error is higher than a predetermined threshold this indicates an anomaly.
+![autoencoder diagram](images/autoencoder.png)
 ## Time series models and python libraries used in this repository
 Many models assume the data is stationary. In this repository we have ignored these standard checks.
 ### ARIMA
