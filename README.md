@@ -1,6 +1,8 @@
 # Time Series Anomaly Detection
-This is a repository dedicated to sharing easy to use anomaly detection methods for time series data and model outputs.
+This is a repository dedicated to sharing easy to use anomaly detection methods for time series data.
 *Note that Tensorflow (required to run the LSTM based method) only works with Python 3.9–3.12.*
+## Abstract
+Anomaly detection for time series data has a variety of applications ranging from fraud alerting to identifying health concerns. We cover a high level introduction to time series data, univariate time series models, and time series anomaly detection. We provide examples with code for some methods of using time series models for anomaly detection in a variety of situations. 
 ## Contents
 - **arima_anomaly_detection.ipynb**: Simple example of using an ARIMA model for anomaly detection in simulated model outputs.
 - **ensemble_anomaly_detection.ipynb**: Example of using ensembled time series models for anomaly detection with google trends data.
@@ -11,6 +13,11 @@ This is a repository dedicated to sharing easy to use anomaly detection methods 
 ## Prerequisite knowledge
 ### Time series data
 A time series $Y = \{y_1, y_2, ..., y_n\}$ is a set of observations $y_t$ recorded at time $t$. They can be univariate or multivariate, discrete or continuous. Time series can be used in regression (e.g. forecasting stock prices) or classification (e.g. identifying a cardiac event). This repository focuses on using forecasting models for anomaly detection in the discrete univariate case.
+
+An example of time series for regression: Microsoft closing stock price.
+![Regression](images/stock_price.png)
+An example of time series for classification: the leaf shape from two different species of tree.
+![Classification](images/leaf_time_series.png)
 ### Anomaly detection
 Anomaly is sometimes used interchangably with outliers, and frequently the same methods can be used to find them. However, they are distinct concepts. Outliers are data points that significantly deviate from the majority of the data set, frequently the use case in identifying outliers is for data cleaning or use them to explain a statistic. Anomalies are events in the data that does not fit the expected behavior which help identify significant events like fraud or a heart attack. Anomaly detection is the automated identification of anomalies frequently utilizing machine learning methods.
 
