@@ -10,6 +10,9 @@ Anomaly detection for time series data has a variety of applications ranging fro
 - **arima_anomaly_detection.ipynb**: Simple example of using an ARIMA model for anomaly detection in simulated model outputs.
 - **ensemble_anomaly_detection.ipynb**: Example of using ensembled time series models for anomaly detection with google trends data.
 - **lstm_autoencoder.ipynb**: Example using an LSTM autoencoder for anomaly detection.
+- **seasonal_decompose_temperature.ipynb**: Example using seasonal decompose for anomaly detection.
+- **seasonal_decompose_airline_passengers.ipynb**: Example using seasonal decompose for anomaly detection.
+- **temperature_data.csv**: Data used for seasonal_decompose_temperature.ipynb
 - **google_trends_redfin.csv**: Data used for ensemble_anomaly_detection.ipynb
 - **pmms_data.csv**: Data used for arima_anomaly_detection.ipynb
 - **requirements.txt**: requirements file
@@ -21,14 +24,40 @@ An example of time series for regression: Microsoft closing stock price.
 ![Regression](images/stock_price.png)
 An example of time series for classification: the leaf shape from two different species of tree.
 ![Classification](images/leaf_time_series.png)
+
+Time series can be thought of as containing three components: 
+1. Trend $(t_t)$: the general shape of the data over time
+2. Seasonality $(s_t)$: Patterns based on time
+3. Noise/residuals $(\epsilon_t)$: Random noise assumed to be normally distributed
+
+Time series can be additive:
+
+$x_t = t_t+s_t+\epsilon_t$
+
+Or multiplicative:
+
+$x_t = t_ts_t\epsilon_t$
+
+We can decompose a time series into the three parts which can give us insight into how to treat the time series for modeling and, of course, anomaly detection.
+
+![trend and seasonality example](images/trend_seasonality.png)
+
+![decomposition example](images/decompose.png)
+
 ### Anomaly detection
-Anomaly is sometimes used interchangably with outliers, and frequently the same methods can be used to find them. However, they are distinct concepts. Outliers are data points that significantly deviate from the majority of the data set, frequently the use case in identifying outliers is for data cleaning or use them to explain a statistic. Anomalies are events in the data that does not fit the expected behavior which help identify significant events like fraud or a heart attack. Anomaly detection is the automated identification of anomalies frequently utilizing machine learning methods.
+Anomaly is sometimes used interchangably with outliers, and frequently the same methods can be used to find either. However, they are distinct concepts. Outliers are data points that significantly deviate from the majority of the data set, with use cases ranging from data cleaning or explaining a statistic. Anomalies are events in the data that do not fit the expected behavior which help identify significant events like fraud or a heart attack. Anomaly detection is the automated identification of anomalies frequently utilizing machine learning methods.
 
 In this image it is easy to visually inspect the plot and find an obvious anomaly in February 2026. Not all anomalies are this easy to spot.
 ![anomaly example](images/anomaly.png)
 
 Anomaly detection at its core is a simple concept. It's the "math and stuff" part where we have the opportunity to make things complicated and fun.
 ![anomaly detection](images/anomaly_detection.png)
+
+### Time series decomposition
+
+By decomposing a time series into trend, seasonality, and residuals we can take advantage of the properties of the residuals. We assume that the residuals are normally distributed which can make it easy to identify anomalies. For example, any residual outside of 3 standard deviations of the mean could be classified as an anomaly. Then based on the date index of the residuals we can find the anomalies in the data.
+![residuals example](images/residuals.png)
+
 ### Prediction intervals
 Many of the techniques included in this repository rely on the use of prediction intervals. The prediction interval is a range of values that is likely to contian an individual value. We can determine whether or not a data point is an anomaly based on if it falls outside of the prediction interval.
 
@@ -49,3 +78,5 @@ https://www.statsmodels.org/stable/generated/statsmodels.tsa.holtwinters.Exponen
 https://facebook.github.io/prophet/
 ### LSTM
 https://www.tensorflow.org/api_docs/python/tf/keras/layers/LSTM
+### Seasonal decompose
+https://www.statsmodels.org/stable/generated/statsmodels.tsa.seasonal.seasonal_decompose.html
