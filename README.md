@@ -3,7 +3,7 @@ This is a repository dedicated to sharing easy to use anomaly detection methods 
 
 Warnings:
 - Tensorflow (required to run the LSTM based method) only works with Python 3.9–3.12.
-- Many time series models assume the data is stationary. In this repository we skipped these standard checks in favor of simplicity and focusing on the anomaly detection methods.
+- Many time series models assume the data is stationary. In this repository, we skipped these standard checks in favor of simplicity and focusing on the anomaly detection methods.
 ## Abstract
 Anomaly detection for time series data has a variety of applications ranging from fraud alerting to identifying health concerns. We cover a high level introduction to time series data, univariate time series models, and time series anomaly detection. We provide examples with code for some methods of using time series models for anomaly detection in a variety of situations. 
 ## Contents
@@ -38,14 +38,14 @@ Or multiplicative:
 
 $x_t = t_ts_t\epsilon_t$
 
-We can decompose a time series into the three parts which can give us insight into how to treat the time series for modeling and, of course, anomaly detection.
+We can decompose a time series into the three parts, which can give us insight into how to treat the time series for modeling and, of course, anomaly detection.
 
 ![trend and seasonality example](images/trend_seasonality.png)
 
 ![decomposition example](images/decompose.png)
 
 ### Anomaly detection
-Anomaly is sometimes used interchangably with outliers, and frequently the same methods can be used to find either. However, they are distinct concepts. Outliers are data points that significantly deviate from the majority of the data set, with use cases ranging from data cleaning or explaining a statistic. Anomalies are events in the data that do not fit the expected behavior which help identify significant events like fraud or a heart attack. Anomaly detection is the automated identification of anomalies frequently utilizing machine learning methods.
+Anomaly is sometimes used interchangably with outliers, and frequently the same methods can be used to find either. However, they are distinct concepts. Outliers are data points that significantly deviate from the majority of the data set, with uses cases such as data cleaning or explaining a statistic. Anomalies are events in the data that do not fit the expected behavior which help identify significant events like fraud or a heart attack. Anomaly detection is the automated identification of anomalies frequently utilizing machine learning methods.
 
 In this image it is easy to visually inspect the plot and find an obvious anomaly in February 2026. Not all anomalies are this easy to spot.
 ![anomaly example](images/anomaly.png)
@@ -55,13 +55,13 @@ Anomaly detection at its core is a simple concept. It's the "math and stuff" par
 
 ### Time series decomposition
 
-By decomposing a time series into trend, seasonality, and residuals we can take advantage of the properties of the residuals. We assume that the residuals are normally distributed which can make it easy to identify anomalies. For example, any residual outside of 3 standard deviations of the mean could be classified as an anomaly. Then based on the date index of the residuals we can find the anomalies in the data.
+By decomposing a time series into trend, seasonality, and residuals, we can take advantage of the properties of the residuals. We assume that the residuals are normally distributed which can make it easy to identify anomalies. For example, any residual outside of 3 standard deviations of the mean could be classified as an anomaly. Then, based on the date index of the residuals, we can find the anomalies in the data.
 ![residuals example](images/residuals.png)
 
 ### Prediction intervals
 Many of the techniques included in this repository rely on the use of prediction intervals. The prediction interval is a range of values that is likely to contian an individual value. We can determine whether or not a data point is an anomaly based on if it falls outside of the prediction interval.
 
-Note that in some places we use the term confidence interval, which is a similar concept, but technically incorrect and I'm too lazy to go change it.
+Note that in some places we use the term confidence interval, which is a similar concept, but it is technically incorrect and I'm too lazy to go change it.
 
 In this image, the prediction interval is indicated by the grey area around the predicted values and true values.
 ![prediction interval example](images/prediction_interval.png)
